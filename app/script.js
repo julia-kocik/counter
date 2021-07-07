@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { render } from 'react-dom';
 
-class App extends React.Component {
-
-  render() {
+const App = () => {
+  const [status, setStatus] = useState('off');
+  const [time, setTime] = useState(0);
+  const [timer, setTimer] = useState(null);
     return (
       <div>
         <h1>Protect your eyes</h1>
@@ -19,7 +20,6 @@ class App extends React.Component {
         <button className="btn btn-close">X</button>
       </div>
     )
-  }
 };
 
 render(<App />, document.querySelector('#app'));

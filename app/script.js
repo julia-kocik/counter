@@ -5,6 +5,23 @@ const App = () => {
   const [status, setStatus] = useState('off');
   const [time, setTime] = useState(0);
   const [timer, setTimer] = useState(null);
+  const formatTime = (time) => {
+    let minutes = Math.floor((seconds - (hours * 3600)) / 60);
+    let seconds = seconds - (hours * 3600) - (minutes * 60);
+
+    if (minutes != 0 || time !== "") {
+      minutes = (minutes < 10 && time !== "") ? "0"+minutes : String(minutes);
+      time += minutes+":";
+    }
+    if (time === "") {
+      time = seconds+"s";
+    }
+    else {
+      time += (seconds < 10) ? "0"+seconds : String(seconds);
+    }
+    return time;
+}
+  }
     return (
       <div>
         <h1>Protect your eyes</h1>
@@ -15,7 +32,7 @@ const App = () => {
         {status === 'work' && <img src="./images/work.png" />}
         {status === 'rest' && <img src="./images/rest.png" />}
         {status !== 'off' && <div className="timer">
-          18:23
+          {formatTime(time)}
         </div>}
         <button className="btn">Start</button>
         {status === 'off' && <button className="btn">Stop</button>}

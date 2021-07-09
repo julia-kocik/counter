@@ -1,27 +1,23 @@
 import React, {useState} from 'react';
 import { render } from 'react-dom';
 
-const App = () => {
-  const [status, setStatus] = useState('off');
-  const [time, setTime] = useState(0);
-  const [timer, setTimer] = useState(null);
-  const formatTime = (time) => {
-    let minutes = Math.floor((seconds - (hours * 3600)) / 60);
-    let seconds = seconds - (hours * 3600) - (minutes * 60);
-
-    if (minutes != 0 || time !== "") {
-      minutes = (minutes < 10 && time !== "") ? "0"+minutes : String(minutes);
-      time += minutes+":";
-    }
-    if (time === "") {
-      time = seconds+"s";
-    }
-    else {
-      time += (seconds < 10) ? "0"+seconds : String(seconds);
-    }
-    return time;
+const formatTime = (seconds) => {
+  //let h = Math.floor(seconds / 3600);
+  let m = Math.floor((seconds % 3600) / 60);
+  let s = Math.round(seconds % 60);
+  //if (h < 10) {h = "0"+h;}
+  if (m < 10) {m = "0"+m;}
+  if (s < 10) {s = "0"+s;}
+  let t = m+":"+s;
+  return t;
 }
-  }
+
+
+const App = () => {
+  const [status, setStatus] = useState('work');
+  const [time, setTime] = useState(1200);
+  const [timer, setTimer] = useState(null);
+  
     return (
       <div>
         <h1>Protect your eyes</h1>

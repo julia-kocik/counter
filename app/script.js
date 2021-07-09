@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import { render } from 'react-dom';
 
 
-
-
 const App = () => {
   const [status, setStatus] = useState('off');
   const [time, setTime] = useState(0);
@@ -19,13 +17,20 @@ const App = () => {
     let t = m+":"+s;
     return t;
   }
-  const step = () => {};
+  const step = () => {
+    setTime(time => time -1)
+    console.log(time)
+  };
   const startTimer = () => {
-    setTimer(setInterval(step, 1000));
     setTime(1200);
+    setTimer(setInterval(step, 1000));
     setStatus('work');
   };  
-  
+
+  console.log(status);
+    console.log(time);
+    console.log(timer);
+    
     return (
       <div>
         <h1>Protect your eyes</h1>

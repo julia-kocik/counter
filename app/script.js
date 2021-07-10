@@ -14,7 +14,7 @@ class App extends React.Component {
     this.step = this.step.bind(this);
     this.startTimer = this.startTimer.bind(this);
   }
-  formatTime = (seconds)  => {
+  formatTime(seconds) {
     //let h = Math.floor(seconds / 3600);
     let m = Math.floor((seconds % 3600) / 60);
     let s = Math.round(seconds % 60);
@@ -24,7 +24,7 @@ class App extends React.Component {
     let t = m+":"+s;
     return t;
   }
-  step = () => {
+  step() {
     if(this.state.time === 0) {
       if(this.state.status === 'work') {
         this.setState({
@@ -43,10 +43,10 @@ class App extends React.Component {
       })
     }
   }
-  startTimer = () => {
+  startTimer() {
     this.setState({
       status: 'work',
-      time: 10,
+      time: 1200,
       timer: setInterval(this.step, 1000)
     })
   } 

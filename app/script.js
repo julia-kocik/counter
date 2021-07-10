@@ -15,6 +15,7 @@ class App extends React.Component {
     this.startTimer = this.startTimer.bind(this);
     this.stopTimer = this.stopTimer.bind(this);
     this.closeApp = this.closeApp.bind(this);
+    this.playBell = this.playBell.bind(this);
   }
   formatTime(seconds) {
     //let h = Math.floor(seconds / 3600);
@@ -29,11 +30,13 @@ class App extends React.Component {
   step() {
     if(this.state.time === 0) {
       if(this.state.status === 'work') {
+        this.playBell();
         this.setState({
           status: 'rest',
           time: 20,
         })
       } else if(this.state.status === 'rest') {
+        this.playBell();
         this.setState({
           status: 'work',
           time: 1200,
@@ -61,6 +64,10 @@ class App extends React.Component {
   }
   closeApp() {
     window.close()
+  }
+  playBell() {
+    let audio = new Audio('./sounds/bell.wav');
+    audio.play();
   }
   render() {  
     const { time, status } = this.state;
